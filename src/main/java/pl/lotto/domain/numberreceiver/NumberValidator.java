@@ -5,8 +5,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class NumberValidator {
-
+class NumberValidator {
     private static final int QUANTITY_OF_NUMBERS_FROM_USER = 6;
     private static final int MAX_VALUE_NUMBER_FROM_USER = 99;
     private static final int MIN_VALUE_NUMBER_FROM_USER = 1;

@@ -1,4 +1,4 @@
-package pl.lotto.domain.numberreceiver;
+package pl.lotto.domain.winningnumbergenerator;
 
 public interface HashGenerable {
     String getHash();
