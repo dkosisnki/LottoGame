@@ -93,7 +93,7 @@ public class NumberReceiverFacadeTest {
 
         Clock clock = Clock.fixed(
                 LocalDateTime.of(2023, 6, 14, 10, 0, 0)
-                        .toInstant(ZoneOffset.UTC), ZoneId.of("Europe/London"));
+                        .toInstant(ZoneOffset.UTC), ZoneId.of("UTC"));
 
         NumberReceiverFacade numberReceiverFacade = new NumberReceiverConfiguration().createForTest(clock, ticketRepository);
 
@@ -110,8 +110,8 @@ public class NumberReceiverFacadeTest {
         Set<Integer> userNumbers = Set.of(1, 2, 3, 4, 5, 6);
 
         Clock clock = Clock.fixed(
-                LocalDateTime.of(2023, 6, 17, 9, 0, 0)
-                        .toInstant(ZoneOffset.UTC), ZoneId.of("Europe/London"));
+                LocalDateTime.of(2023, 6, 17, 11, 30, 0)
+                        .toInstant(ZoneOffset.UTC), ZoneId.of("UTC"));
 
         NumberReceiverFacade numberReceiverFacade = new NumberReceiverConfiguration().createForTest(clock, ticketRepository);
 
@@ -128,7 +128,7 @@ public class NumberReceiverFacadeTest {
         Set<Integer> userNumbers = Set.of(1, 2, 3, 4, 5, 6);
         Clock clock = Clock.fixed(
                 LocalDateTime.of(2023, 6, 17, 12, 0, 0)
-                        .toInstant(ZoneOffset.UTC), ZoneId.of("Europe/London"));
+                        .toInstant(ZoneOffset.UTC), ZoneId.of("UTC"));
         NumberReceiverFacade numberReceiverFacade = new NumberReceiverConfiguration().createForTest(clock, ticketRepository);
 
         // when
@@ -144,7 +144,7 @@ public class NumberReceiverFacadeTest {
         Set<Integer> usersNumbers = Set.of(1, 2, 3, 4, 5, 6);
         Clock clock = Clock.fixed(
                 LocalDateTime.of(2023, 6, 17, 14, 0, 0)
-                        .toInstant(ZoneOffset.UTC), ZoneId.of("Europe/London"));
+                        .toInstant(ZoneOffset.UTC), ZoneId.of("UTC"));
         NumberReceiverFacade numberReceiverFacade = new NumberReceiverConfiguration().createForTest(clock, ticketRepository);
 
         // when
@@ -160,7 +160,7 @@ public class NumberReceiverFacadeTest {
         // given
         AdjustableClock clock = new AdjustableClock(
                 LocalDateTime.of(2023, 6, 15, 12, 0, 0)
-                        .toInstant(ZoneOffset.UTC), ZoneId.of("Europe/London"));
+                        .toInstant(ZoneOffset.UTC), ZoneId.of("UTC"));
         Set<Integer> usersNumbers = Set.of(1, 2, 3, 4, 5, 6);
         NumberReceiverFacade numberReceiverFacade = new NumberReceiverConfiguration().createForTest(clock, ticketRepository);
 
@@ -190,7 +190,7 @@ public class NumberReceiverFacadeTest {
         // given
         Clock clock = Clock.fixed(
                 LocalDateTime.of(2023, 6, 15, 12, 0, 0)
-                        .toInstant(ZoneOffset.UTC), ZoneId.of("Europe/London"));
+                        .toInstant(ZoneOffset.UTC), ZoneId.of("UTC"));
 
         NumberReceiverFacade numberReceiverFacade = new NumberReceiverConfiguration().createForTest(clock, ticketRepository);
 
@@ -207,7 +207,7 @@ public class NumberReceiverFacadeTest {
 
         Clock clock = Clock.fixed(
                 LocalDateTime.of(2023, 6, 15, 12, 0, 0)
-                        .toInstant(ZoneOffset.UTC), ZoneId.of("Europe/London"));
+                        .toInstant(ZoneOffset.UTC), ZoneId.of("UTC"));
 
         NumberReceiverFacade numberReceiverFacade = new NumberReceiverConfiguration().createForTest(clock, ticketRepository);
         NumberReceiverResponseDto numberReceiverResponseDto = numberReceiverFacade.inputNumbers(usersNumbers);

@@ -23,7 +23,7 @@ public class WinningNumbersGeneratorFacade {
 
         winningNumbersValidator.validate(randomNumbers);
 
-        //TODO rather id won't be useful
+        //TODO rather hash won't be useful
         String id = hashGenerator.getHash();
 
         WinningNumbers winningNumbers = WinningNumbers.builder()

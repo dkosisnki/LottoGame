@@ -30,16 +30,16 @@ class WinningNumbersGenerableFacadeTest {
         assertEquals(6, winningNumbers.size());
     }
 
-//    @Test
-//    public void shouldGenerateNumbersInAppropriateRange() {
-//        //given
-//        when(numberReceiverFacade.retrieveNextDrawDate()).thenReturn(LocalDateTime.now());
-//        //when
-//        Set<Integer> winningNumbers = winningNumberGeneratorFacade.generateWinningNumbers().winningNumbers();
-//        //then
-//        assertTrue(winningNumbers.stream().allMatch((number) -> number >= 1 && number <= 99));
-//    }
-//  --------- TEST shouldGenerateNumbersInAppropriateRange and shouldThrowExceptionWhenGeneratedWinningNumbersAreOutOfRange test the same case -------------
+    @Test
+    public void shouldGenerateNumbersInAppropriateRange() {
+        //given
+        when(numberReceiverFacade.retrieveNextDrawDate()).thenReturn(LocalDateTime.now());
+        //when
+        Set<Integer> winningNumbers = winningNumbersGeneratorFacade.generateWinningNumbers().winningNumbers();
+        //then
+        assertTrue(winningNumbers.stream().allMatch((number) -> number >= 1 && number <= 99));
+    }
+
     @Test
     public void shouldThrowExceptionWhenGeneratedWinningNumbersAreOutOfRange(){
         //given
