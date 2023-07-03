@@ -2,6 +2,7 @@ package pl.lotto.domain.winningnumbergenerator;
 
 import lombok.AllArgsConstructor;
 import pl.lotto.domain.numberreceiver.NumberReceiverFacade;
+import pl.lotto.domain.winningnumbergenerator.dto.SixRandomNumberDto;
 import pl.lotto.domain.winningnumbergenerator.dto.WinningNumbersDto;
 
 import java.time.LocalDateTime;
@@ -19,7 +20,8 @@ public class WinningNumbersGeneratorFacade {
     public WinningNumbersDto generateWinningNumbers() {
         LocalDateTime nextDrawDate = numberReceiverFacade.retrieveNextDrawDate();
 
-        Set<Integer> randomNumbers = randomNumberGenerator.generateWinningNumbers();
+        SixRandomNumberDto sixRandomNumberDto = randomNumberGenerator.generateSixRandomNumbers();
+        Set<Integer> randomNumbers = sixRandomNumberDto.randomNumbers();
 
         winningNumbersValidator.validate(randomNumbers);
 

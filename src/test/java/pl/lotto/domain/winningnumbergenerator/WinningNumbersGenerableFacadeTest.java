@@ -2,6 +2,7 @@ package pl.lotto.domain.winningnumbergenerator;
 
 import org.junit.jupiter.api.Test;
 import pl.lotto.domain.numberreceiver.NumberReceiverFacade;
+import pl.lotto.domain.winningnumbergenerator.dto.SixRandomNumberDto;
 import pl.lotto.domain.winningnumbergenerator.dto.WinningNumbersDto;
 
 import java.time.LocalDateTime;
@@ -16,7 +17,7 @@ class WinningNumbersGenerableFacadeTest {
 
     NumberReceiverFacade numberReceiverFacade = mock(NumberReceiverFacade.class);
     WinningNumbersRepository repository = new WinningNumbersRepositoryTestImpl();
-    RandomNumbersGenerable randomNumbersGenerator = new RandomNumbersGenerator();
+    RandomNumbersGenerable randomNumbersGenerator = new RandomNumbersGeneratorTestImpl();
     WinningNumbersGeneratorFacade winningNumbersGeneratorFacade =
             new WinningNumbersGeneratorConfiguration().createForTest(numberReceiverFacade,repository, randomNumbersGenerator);
 
@@ -43,7 +44,9 @@ class WinningNumbersGenerableFacadeTest {
     @Test
     public void shouldThrowExceptionWhenGeneratedWinningNumbersAreOutOfRange(){
         //given
-        RandomNumbersGeneratorTestImpl winningNumberGeneratorTest = new RandomNumbersGeneratorTestImpl();
+        RandomNumbersGenerable winningNumberGeneratorTest = () -> SixRandomNumberDto.builder()
+                .randomNumbers(Set.of(1,3,5,6,100))
+                .build();
         WinningNumbersGeneratorFacade facadeForTest = new WinningNumbersGeneratorConfiguration().createForTest(numberReceiverFacade,repository,winningNumberGeneratorTest);
         when(numberReceiverFacade.retrieveNextDrawDate()).thenReturn(LocalDateTime.now());
         //when
