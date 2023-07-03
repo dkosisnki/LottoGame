@@ -126,7 +126,7 @@ class ResultCheckerFacadeTest {
         resultChecker.checkResult();
 
         //when
-        ResultDto result = resultChecker.findPlayerByHash(hashIdToFind);
+        ResultDto result = resultChecker.findByHash(hashIdToFind);
 
         //then
         assertEquals(hashIdToFind,result.hash());
@@ -165,7 +165,7 @@ class ResultCheckerFacadeTest {
 
         //when, then
         ResultCheckerNotFoundException exception
-                = assertThrows(ResultCheckerNotFoundException.class, () -> resultChecker.findPlayerByHash(hashIdToFind));
+                = assertThrows(ResultCheckerNotFoundException.class, () -> resultChecker.findByHash(hashIdToFind));
         assertEquals("Not found ticket with" + hashIdToFind, exception.getMessage());
     }
 }

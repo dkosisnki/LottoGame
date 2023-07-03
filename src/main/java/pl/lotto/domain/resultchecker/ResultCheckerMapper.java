@@ -5,7 +5,7 @@ import pl.lotto.domain.resultchecker.dto.ResultDto;
 
 import java.util.List;
 
-public class ResultCheckerMapper {
+class ResultCheckerMapper {
 
     static List<Ticket> mapToTickets(List<TicketDto> ticketDtos) {
         return ticketDtos.stream()
