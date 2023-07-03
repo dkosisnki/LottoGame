@@ -39,7 +39,7 @@ public class ResultCheckerFacade {
                 .build();
     }
 
-    public ResultDto findPlayerByHash(String hashId){
+    public ResultDto findByHash(String hashId){
         Player player = repository.findByHash(hashId)
                 .orElseThrow(
                         () -> new ResultCheckerNotFoundException("Not found ticket with" + hashId));
