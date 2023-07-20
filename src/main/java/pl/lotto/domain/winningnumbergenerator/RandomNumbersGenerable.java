@@ -1,8 +1,9 @@
 package pl.lotto.domain.winningnumbergenerator;
 
-import pl.lotto.domain.winningnumbergenerator.dto.SixRandomNumberDto;
+import pl.lotto.domain.winningnumbergenerator.dto.SixRandomNumbersDto;
+
 
 public interface RandomNumbersGenerable {
 
-    SixRandomNumberDto generateSixRandomNumbers();
+    SixRandomNumbersDto generateSixRandomNumbers(int count,int lowerBand, int upperBand);
 }

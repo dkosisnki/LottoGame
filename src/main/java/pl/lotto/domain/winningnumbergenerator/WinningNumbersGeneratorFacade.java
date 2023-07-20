@@ -2,7 +2,7 @@ package pl.lotto.domain.winningnumbergenerator;
 
 import lombok.AllArgsConstructor;
 import pl.lotto.domain.numberreceiver.NumberReceiverFacade;
-import pl.lotto.domain.winningnumbergenerator.dto.SixRandomNumberDto;
+import pl.lotto.domain.winningnumbergenerator.dto.SixRandomNumbersDto;
 import pl.lotto.domain.winningnumbergenerator.dto.WinningNumbersDto;
 
 import java.time.LocalDateTime;
@@ -15,21 +15,18 @@ public class WinningNumbersGeneratorFacade {
     private final NumberReceiverFacade numberReceiverFacade;
     private final WinningNumbersValidator winningNumbersValidator;
     private final WinningNumbersRepository repository;
-    private final HashGenerable hashGenerator;
+    private final WinningNumbersGeneratorFacadeConfigurationProperties properties;
 
     public WinningNumbersDto generateWinningNumbers() {
         LocalDateTime nextDrawDate = numberReceiverFacade.retrieveNextDrawDate();
 
-        SixRandomNumberDto sixRandomNumberDto = randomNumberGenerator.generateSixRandomNumbers();
-        Set<Integer> randomNumbers = sixRandomNumberDto.randomNumbers();
+        SixRandomNumbersDto sixRandomNumbersDto = randomNumberGenerator.generateSixRandomNumbers(properties.count(), properties.lowerBand(), properties.upperBand());
+        Set<Integer> randomNumbers = sixRandomNumbersDto.numbers();
 
         winningNumbersValidator.validate(randomNumbers);
 
-        //TODO rather hash won't be useful
-        String id = hashGenerator.getHash();
 
         WinningNumbers winningNumbers = WinningNumbers.builder()
-                .id(id)
                 .numbers(randomNumbers)
                 .drawDate(nextDrawDate)
                 .build();

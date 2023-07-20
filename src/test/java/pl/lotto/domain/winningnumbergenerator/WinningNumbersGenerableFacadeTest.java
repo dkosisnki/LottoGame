@@ -2,7 +2,7 @@ package pl.lotto.domain.winningnumbergenerator;
 
 import org.junit.jupiter.api.Test;
 import pl.lotto.domain.numberreceiver.NumberReceiverFacade;
-import pl.lotto.domain.winningnumbergenerator.dto.SixRandomNumberDto;
+import pl.lotto.domain.winningnumbergenerator.dto.SixRandomNumbersDto;
 import pl.lotto.domain.winningnumbergenerator.dto.WinningNumbersDto;
 
 import java.time.LocalDateTime;
@@ -44,8 +44,8 @@ class WinningNumbersGenerableFacadeTest {
     @Test
     public void shouldThrowExceptionWhenGeneratedWinningNumbersAreOutOfRange(){
         //given
-        RandomNumbersGenerable winningNumberGeneratorTest = () -> SixRandomNumberDto.builder()
-                .randomNumbers(Set.of(1,3,5,6,100))
+        RandomNumbersGenerable winningNumberGeneratorTest = () -> SixRandomNumbersDto.builder()
+                .numbers(Set.of(1,3,5,6,100))
                 .build();
         WinningNumbersGeneratorFacade facadeForTest = new WinningNumbersGeneratorConfiguration().createForTest(numberReceiverFacade,repository,winningNumberGeneratorTest);
         when(numberReceiverFacade.retrieveNextDrawDate()).thenReturn(LocalDateTime.now());
