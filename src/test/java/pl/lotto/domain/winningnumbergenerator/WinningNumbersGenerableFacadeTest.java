@@ -18,8 +18,16 @@ class WinningNumbersGenerableFacadeTest {
     NumberReceiverFacade numberReceiverFacade = mock(NumberReceiverFacade.class);
     WinningNumbersRepository repository = new WinningNumbersRepositoryTestImpl();
     RandomNumbersGenerable randomNumbersGenerator = new RandomNumbersGeneratorTestImpl();
+
+    WinningNumbersGeneratorFacadeConfigurationProperties properties = WinningNumbersGeneratorFacadeConfigurationProperties.builder()
+            .upperBand(99)
+            .lowerBand(1)
+            .count(6)
+            .build();
     WinningNumbersGeneratorFacade winningNumbersGeneratorFacade =
-            new WinningNumbersGeneratorConfiguration().createForTest(numberReceiverFacade,repository, randomNumbersGenerator);
+            new WinningNumbersGeneratorConfiguration().winningNumbersGeneratorFacade(
+                    repository,numberReceiverFacade,randomNumbersGenerator,properties
+            );
 
     @Test
     public void shouldGenerateSixNumbers() {
@@ -44,10 +52,12 @@ class WinningNumbersGenerableFacadeTest {
     @Test
     public void shouldThrowExceptionWhenGeneratedWinningNumbersAreOutOfRange(){
         //given
-        RandomNumbersGenerable winningNumberGeneratorTest = () -> SixRandomNumbersDto.builder()
+        RandomNumbersGenerable winningNumberGeneratorTest = (count,lowerBand,upperBand) -> SixRandomNumbersDto.builder()
                 .numbers(Set.of(1,3,5,6,100))
                 .build();
-        WinningNumbersGeneratorFacade facadeForTest = new WinningNumbersGeneratorConfiguration().createForTest(numberReceiverFacade,repository,winningNumberGeneratorTest);
+        WinningNumbersGeneratorFacade facadeForTest = new WinningNumbersGeneratorConfiguration().winningNumbersGeneratorFacade(
+                repository,numberReceiverFacade,winningNumberGeneratorTest,properties
+        );
         when(numberReceiverFacade.retrieveNextDrawDate()).thenReturn(LocalDateTime.now());
         //when
         //then

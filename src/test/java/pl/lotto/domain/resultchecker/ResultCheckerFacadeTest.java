@@ -32,7 +32,7 @@ class ResultCheckerFacadeTest {
                         .build());
 
         ResultCheckerFacade resultChecker
-                = new ResultCheckerConfiguration().createForTest(numberReceiverFacade, winningNumbersGeneratorFacade, repository);
+                = new ResultCheckerConfiguration().resultCheckerFacade(numberReceiverFacade, winningNumbersGeneratorFacade, repository);
         //when
         PlayerDto playerDto = resultChecker.checkResult();
         //then
@@ -48,7 +48,7 @@ class ResultCheckerFacadeTest {
                         .build());
 
         ResultCheckerFacade resultChecker
-                = new ResultCheckerConfiguration().createForTest(numberReceiverFacade, winningNumbersGeneratorFacade, repository);
+                = new ResultCheckerConfiguration().resultCheckerFacade(numberReceiverFacade, winningNumbersGeneratorFacade, repository);
         //when
         PlayerDto playerDto = resultChecker.checkResult();
         //then
@@ -83,7 +83,7 @@ class ResultCheckerFacadeTest {
                         .build());
 
         ResultCheckerFacade resultChecker
-                = new ResultCheckerConfiguration().createForTest(numberReceiverFacade, winningNumbersGeneratorFacade, repository);
+                = new ResultCheckerConfiguration().resultCheckerFacade(numberReceiverFacade, winningNumbersGeneratorFacade, repository);
 
         //when
         PlayerDto playerDto = resultChecker.checkResult();
@@ -122,7 +122,7 @@ class ResultCheckerFacadeTest {
                         .build());
 
         ResultCheckerFacade resultChecker
-                = new ResultCheckerConfiguration().createForTest(numberReceiverFacade, winningNumbersGeneratorFacade, repository);
+                = new ResultCheckerConfiguration().resultCheckerFacade(numberReceiverFacade, winningNumbersGeneratorFacade, repository);
         resultChecker.checkResult();
 
         //when
@@ -160,7 +160,7 @@ class ResultCheckerFacadeTest {
                         .build());
 
         ResultCheckerFacade resultChecker
-                = new ResultCheckerConfiguration().createForTest(numberReceiverFacade, winningNumbersGeneratorFacade, repository);
+                = new ResultCheckerConfiguration().resultCheckerFacade(numberReceiverFacade, winningNumbersGeneratorFacade, repository);
         resultChecker.checkResult();
 
         //when, then

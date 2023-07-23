@@ -22,8 +22,8 @@ public class ResultAnnouncerFacade {
     private final Clock clock;
 
     public ResultAnnouncerResponseDto checkWinner(String hash){
-        if (responseRepository.hasHash(hash)){
-            Optional<ResultResponse> resultCached = responseRepository.findByHash(hash);
+        if (responseRepository.existsById(hash)){
+            Optional<ResultResponse> resultCached = responseRepository.findById(hash);
             if (resultCached.isPresent()){
                 return new ResultAnnouncerResponseDto(
                         ResultMapper.mapToResultResponseDto(resultCached.get()),ALREADY_CHECKED_MESSAGE.message);
@@ -35,9 +35,9 @@ public class ResultAnnouncerFacade {
         }
 
         ResultResponseDto resultResponseDto = buildResponseDto(resultDto);
-        responseRepository.saveResponse(ResultMapper.mapToResultResponse(resultResponseDto));
+        responseRepository.save(ResultMapper.mapToResultResponse(resultResponseDto));
 
-        if (responseRepository.hasHash(hash) && !isAfterResultAnnouncementTime(resultDto)){
+        if (responseRepository.existsById(hash) && !isAfterResultAnnouncementTime(resultDto)){
             return new ResultAnnouncerResponseDto(resultResponseDto, WAIT_MESSAGE.message);
         }
         if (resultCheckerFacade.findByHash(hash).isWinner()) {

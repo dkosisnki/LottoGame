@@ -68,13 +68,12 @@ public class RandomNumberGeneratorRestTemplate implements RandomNumbersGenerable
                 .queryParam("max", upperBand)
                 .queryParam("count", count)
                 .toUriString();
-        ResponseEntity<List<Integer>> response = restTemplate.exchange(
+        return restTemplate.exchange(
                 url,
                 HttpMethod.GET,
                 requestEntity,
                 new ParameterizedTypeReference<>() {
                 });
-        return response;
     }
 
     private String getUrlForService(String service) {

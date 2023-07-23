@@ -3,7 +3,7 @@ package pl.lotto.infrastructure.winningnumbergenerator.http;
 import lombok.Builder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties(prefix = "lotto.http.client.config")
+@ConfigurationProperties(prefix = "lotto.number-generator.http.client.config")
 @Builder
 public record RandomNumberGeneratorRestConfigurationProperties(
         String uri,

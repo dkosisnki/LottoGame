@@ -20,23 +20,4 @@ public class WinningNumbersGeneratorConfiguration {
                 randomNumbersGenerator, numberReceiverFacade, winningNumbersValidator, winningNumbersRepository, properties);
     }
 
-
-    public WinningNumbersGeneratorFacade createForTest(
-            NumberReceiverFacade numberReceiverFacade,
-            WinningNumbersRepository repository,
-            RandomNumbersGenerable randomNumbersGenerator
-    ) {
-        WinningNumbersGeneratorFacadeConfigurationProperties properties = WinningNumbersGeneratorFacadeConfigurationProperties.builder()
-                .upperBand(99)
-                .lowerBand(1)
-                .count(6)
-                .build();
-
-        return winningNumbersGeneratorFacade(
-                repository,
-                numberReceiverFacade,
-                randomNumbersGenerator,
-                properties
-        );
-    }
 }

@@ -25,22 +25,21 @@ public class WinningNumbersGeneratorFacade {
 
         winningNumbersValidator.validate(randomNumbers);
 
-
-        WinningNumbers winningNumbers = WinningNumbers.builder()
+        WinningNumbers winningNumbersDocument = WinningNumbers.builder()
                 .numbers(randomNumbers)
                 .drawDate(nextDrawDate)
                 .build();
 
-        repository.save(winningNumbers);
+        WinningNumbers savedWinningNumbers = repository.save(winningNumbersDocument);
 
         return WinningNumbersDto.builder()
-                .winningNumbers(randomNumbers)
-                .drawDate(nextDrawDate)
+                .winningNumbers(savedWinningNumbers.numbers())
+                .drawDate(savedWinningNumbers.drawDate())
                 .build();
     }
 
     public WinningNumbersDto retrieveWonNumbersForDate(LocalDateTime date){
-        WinningNumbers winningNumbers = repository.findWonNumbersForDate(date)
+        WinningNumbers winningNumbers = repository.findWinningNumbersByDrawDate(date)
                 .orElseThrow(
                         () -> new WinningNumbersNotFoundException("Not found numbers for date " + date));
 

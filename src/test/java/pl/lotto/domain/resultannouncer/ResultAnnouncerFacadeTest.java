@@ -30,7 +30,7 @@ class ResultAnnouncerFacadeTest {
         String hashWhichWeLookFor = "someHash";
         when(resultCheckerFacade.findByHash(hashWhichWeLookFor)).thenReturn(null);
         ResultAnnouncerFacade resultAnnouncerFacade =
-                new ResultAnnouncerConfiguration().createForTest(resultCheckerFacade,responseRepository,clock);
+                new ResultAnnouncerConfiguration().resultAnnouncerFacade(resultCheckerFacade,responseRepository,clock);
         //when
         ResultAnnouncerResponseDto resultDto = resultAnnouncerFacade.checkWinner(hashWhichWeLookFor);
         //then
@@ -50,7 +50,7 @@ class ResultAnnouncerFacadeTest {
                 .build()
         );
         ResultAnnouncerFacade resultAnnouncerFacade =
-                new ResultAnnouncerConfiguration().createForTest(resultCheckerFacade,responseRepository,clock);
+                new ResultAnnouncerConfiguration().resultAnnouncerFacade(resultCheckerFacade,responseRepository,clock);
         resultAnnouncerFacade.checkWinner(hashWhichWeLookFor);
         //when
         ResultAnnouncerResponseDto resultDto = resultAnnouncerFacade.checkWinner(hashWhichWeLookFor);
@@ -74,7 +74,7 @@ class ResultAnnouncerFacadeTest {
                 .build()
         );
         ResultAnnouncerFacade resultAnnouncerFacade =
-                new ResultAnnouncerConfiguration().createForTest(resultCheckerFacade,responseRepository,clock);
+                new ResultAnnouncerConfiguration().resultAnnouncerFacade(resultCheckerFacade,responseRepository,clock);
         //when
         ResultAnnouncerResponseDto resultDto = resultAnnouncerFacade.checkWinner(hashWhichWeLookFor);
         //then
@@ -94,7 +94,7 @@ class ResultAnnouncerFacadeTest {
                 .build()
         );
         ResultAnnouncerFacade resultAnnouncerFacade =
-                new ResultAnnouncerConfiguration().createForTest(resultCheckerFacade,responseRepository,clock);
+                new ResultAnnouncerConfiguration().resultAnnouncerFacade(resultCheckerFacade,responseRepository,clock);
         //when
         ResultAnnouncerResponseDto resultDto = resultAnnouncerFacade.checkWinner(hashWhichWeLookFor);
         //then
@@ -114,7 +114,7 @@ class ResultAnnouncerFacadeTest {
                 .build()
         );
         ResultAnnouncerFacade resultAnnouncerFacade =
-                new ResultAnnouncerConfiguration().createForTest(resultCheckerFacade,responseRepository,clock);
+                new ResultAnnouncerConfiguration().resultAnnouncerFacade(resultCheckerFacade,responseRepository,clock);
         //when
         ResultAnnouncerResponseDto resultDto = resultAnnouncerFacade.checkWinner(hashWhichWeLookFor);
         //then

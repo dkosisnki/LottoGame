@@ -1,11 +1,12 @@
 package pl.lotto.domain.resultannouncer;
 
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
+
 import java.util.Optional;
 
-public interface ResponseRepository {
-    boolean hasHash(String hash);
+@Repository
+public interface ResponseRepository extends MongoRepository<ResultResponse, String> {
 
-    Optional<ResultResponse> findByHash(String hash);
 
-    ResultResponse saveResponse(ResultResponse resultResponse);
 }

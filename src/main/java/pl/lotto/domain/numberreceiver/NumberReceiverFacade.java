@@ -57,7 +57,7 @@ public class NumberReceiverFacade {
         if (date.isAfter(nextDrawDate)) {
             return Collections.emptyList();
         }
-        return ticketRepository.findAllTicketsByDrawDate(date)
+        return ticketRepository.findAllByDrawDate(date)
                 .stream()
                 .map(ticket -> TicketDto.builder()
                         .hash(ticket.hash())
