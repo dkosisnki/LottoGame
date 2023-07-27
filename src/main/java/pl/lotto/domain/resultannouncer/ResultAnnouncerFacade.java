@@ -16,7 +16,7 @@ import static pl.lotto.domain.resultannouncer.MessageResponse.*;
 @AllArgsConstructor
 public class ResultAnnouncerFacade {
 
-    public static final LocalTime RESULTS_ANNOUNCEMENT_TIME = LocalTime.of(12, 0).plusMinutes(5);
+    public static final LocalTime RESULTS_ANNOUNCEMENT_TIME = LocalTime.of(12, 0);
     private final ResultCheckerFacade resultCheckerFacade;
     private final ResponseRepository responseRepository;
     private final Clock clock;
@@ -29,7 +29,7 @@ public class ResultAnnouncerFacade {
                         ResultMapper.mapToResultResponseDto(resultCached.get()),ALREADY_CHECKED_MESSAGE.message);
             }
         }
-        ResultDto resultDto = resultCheckerFacade.findByHash(hash);
+        ResultDto resultDto = resultCheckerFacade.findByTicketId(hash);
         if (resultDto == null) {
             return new ResultAnnouncerResponseDto(null, HASH_DOES_NOT_EXIST_MESSAGE.message);
         }
@@ -40,7 +40,7 @@ public class ResultAnnouncerFacade {
         if (responseRepository.existsById(hash) && !isAfterResultAnnouncementTime(resultDto)){
             return new ResultAnnouncerResponseDto(resultResponseDto, WAIT_MESSAGE.message);
         }
-        if (resultCheckerFacade.findByHash(hash).isWinner()) {
+        if (resultCheckerFacade.findByTicketId(hash).isWinner()) {
             return new ResultAnnouncerResponseDto(resultResponseDto, WIN_MESSAGE.message);
         }
         return new ResultAnnouncerResponseDto(resultResponseDto, LOSE_MESSAGE.message);
@@ -54,7 +54,7 @@ public class ResultAnnouncerFacade {
 
     private static ResultResponseDto buildResponseDto(ResultDto resultDto) {
         return ResultResponseDto.builder()
-                .hash(resultDto.hash())
+                .ticketId(resultDto.hash())
                 .numbers(resultDto.numbers())
                 .hitNumbers(resultDto.hitNumbers())
                 .drawDate(resultDto.drawDate())

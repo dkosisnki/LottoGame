@@ -2,7 +2,7 @@ package pl.lotto.domain.resultannouncer;
 
 enum MessageResponse {
 
-    HASH_DOES_NOT_EXIST_MESSAGE("Given hash doesn't exist"),
+    HASH_DOES_NOT_EXIST_MESSAGE("Given ticketId doesn't exist"),
     WAIT_MESSAGE("Result is not calculated yet. Please try later!"),
     WIN_MESSAGE("Congratulations, you won!"),
     LOSE_MESSAGE("Unfortunately you lose, try again!"),

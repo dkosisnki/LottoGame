@@ -85,6 +85,11 @@ public class AdjustableClock extends Clock {
         advanceInTimeBy(ofMinutes);
     }
 
+    public void plusMinutes(int minutes){
+        Duration offset = Duration.ofMinutes(minutes);
+        advanceInTimeBy(offset);
+    }
+
     public void setClockToLocalDateTime(LocalDateTime localDateTime) {
         ZonedDateTime zoneDateTime = createZoneDateTime(localDateTime.toLocalDate(), localDateTime.toLocalTime(), zone);
         this.instant = zoneDateTime.toInstant();

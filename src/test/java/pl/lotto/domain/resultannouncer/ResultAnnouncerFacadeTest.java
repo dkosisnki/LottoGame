@@ -28,7 +28,7 @@ class ResultAnnouncerFacadeTest {
     public void shouldReturnCorrectMessageWhenThereIsNoPlayerWithAppropriateHash() {
         //given
         String hashWhichWeLookFor = "someHash";
-        when(resultCheckerFacade.findByHash(hashWhichWeLookFor)).thenReturn(null);
+        when(resultCheckerFacade.findByTicketId(hashWhichWeLookFor)).thenReturn(null);
         ResultAnnouncerFacade resultAnnouncerFacade =
                 new ResultAnnouncerConfiguration().resultAnnouncerFacade(resultCheckerFacade,responseRepository,clock);
         //when
@@ -41,7 +41,7 @@ class ResultAnnouncerFacadeTest {
     public void shouldReturnCorrectMessageWhenResultIsAlreadyCached() {
         //given
         String hashWhichWeLookFor = "someHash";
-        when(resultCheckerFacade.findByHash(hashWhichWeLookFor)).thenReturn(ResultDto.builder()
+        when(resultCheckerFacade.findByTicketId(hashWhichWeLookFor)).thenReturn(ResultDto.builder()
                 .hash(hashWhichWeLookFor)
                         .drawDate(LocalDateTime.of(2023,6,24,12,0,0))
                         .numbers(Set.of(1,2,3,4,5,6))
@@ -65,7 +65,7 @@ class ResultAnnouncerFacadeTest {
                 LocalDateTime.of(2023,6,24,11,0,0).toInstant(ZoneOffset.UTC),
                 ZoneId.of("UTC"));
         String hashWhichWeLookFor = "someHash";
-        when(resultCheckerFacade.findByHash(hashWhichWeLookFor)).thenReturn(ResultDto.builder()
+        when(resultCheckerFacade.findByTicketId(hashWhichWeLookFor)).thenReturn(ResultDto.builder()
                 .hash(hashWhichWeLookFor)
                 .drawDate(LocalDateTime.of(2023,6,24,12,0,0))
                 .numbers(Set.of(1,2,3,4,5,6))
@@ -85,7 +85,7 @@ class ResultAnnouncerFacadeTest {
     public void shouldReturnCorrectMessageWhenUserWon() {
         //given
         String hashWhichWeLookFor = "someHash";
-        when(resultCheckerFacade.findByHash(hashWhichWeLookFor)).thenReturn(ResultDto.builder()
+        when(resultCheckerFacade.findByTicketId(hashWhichWeLookFor)).thenReturn(ResultDto.builder()
                 .hash(hashWhichWeLookFor)
                 .drawDate(LocalDateTime.of(2023,6,24,12,0,0))
                 .numbers(Set.of(1,2,3,4,5,6))
@@ -105,7 +105,7 @@ class ResultAnnouncerFacadeTest {
     public void shouldReturnCorrectMessageWhenUserLose() {
         //given
         String hashWhichWeLookFor = "someHash";
-        when(resultCheckerFacade.findByHash(hashWhichWeLookFor)).thenReturn(ResultDto.builder()
+        when(resultCheckerFacade.findByTicketId(hashWhichWeLookFor)).thenReturn(ResultDto.builder()
                 .hash(hashWhichWeLookFor)
                 .drawDate(LocalDateTime.of(2023,6,24,12,0,0))
                 .numbers(Set.of(1,2,3,4,5,6))

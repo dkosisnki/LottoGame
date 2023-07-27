@@ -11,7 +11,7 @@ import java.util.Set;
 @Document
 record ResultResponse(
         @Id
-        String hash,
+        String ticketId,
         Set<Integer> numbers,
         Set<Integer> hitNumbers,
         LocalDateTime drawDate,

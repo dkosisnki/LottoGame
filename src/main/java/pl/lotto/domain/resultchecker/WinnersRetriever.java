@@ -4,14 +4,14 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class WinnersRetriever {
+class WinnersRetriever {
 
     private static final Integer MIN_AMOUNT_OF_NUMBERS_TO_WIN = 3;
     public List<Player> retrieveWinners(Set<Integer> winningNumbers, List<Ticket> tickets) {
        return tickets.stream()
                 .map(ticket -> {
                         Set<Integer> hitNumbers = calculateHits(winningNumbers, ticket);
-                        return buildPlayer(ticket, hitNumbers);
+                        return buildResult(ticket, hitNumbers);
                 })
                 .toList();
     }
@@ -22,7 +22,7 @@ public class WinnersRetriever {
                 .collect(Collectors.toSet());
     }
 
-    private Player buildPlayer(Ticket ticket, Set<Integer> hitNumbers) {
+    private Player buildResult(Ticket ticket, Set<Integer> hitNumbers) {
         Player.PlayerBuilder player = Player.builder();
         if (isWinner(hitNumbers)){
             player.isWinner(true);

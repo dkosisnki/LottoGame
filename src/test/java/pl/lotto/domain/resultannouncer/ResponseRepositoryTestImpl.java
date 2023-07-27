@@ -18,7 +18,7 @@ public class ResponseRepositoryTestImpl implements ResponseRepository{
 
     @Override
     public <S extends ResultResponse> S save(S entity) {
-        repository.put(entity.hash(),entity);
+        repository.put(entity.ticketId(),entity);
         return entity;
     }
 

@@ -34,7 +34,7 @@ class ResultCheckerFacadeTest {
         ResultCheckerFacade resultChecker
                 = new ResultCheckerConfiguration().resultCheckerFacade(numberReceiverFacade, winningNumbersGeneratorFacade, repository);
         //when
-        PlayerDto playerDto = resultChecker.checkResult();
+        PlayerDto playerDto = resultChecker.generateResults();
         //then
         assertEquals("Winners failed to retrieve",playerDto.message());
     }
@@ -50,7 +50,7 @@ class ResultCheckerFacadeTest {
         ResultCheckerFacade resultChecker
                 = new ResultCheckerConfiguration().resultCheckerFacade(numberReceiverFacade, winningNumbersGeneratorFacade, repository);
         //when
-        PlayerDto playerDto = resultChecker.checkResult();
+        PlayerDto playerDto = resultChecker.generateResults();
         //then
         assertEquals("Winners failed to retrieve",playerDto.message());
     }
@@ -86,7 +86,7 @@ class ResultCheckerFacadeTest {
                 = new ResultCheckerConfiguration().resultCheckerFacade(numberReceiverFacade, winningNumbersGeneratorFacade, repository);
 
         //when
-        PlayerDto playerDto = resultChecker.checkResult();
+        PlayerDto playerDto = resultChecker.generateResults();
 
         //then
         assertEquals("Winners success to retrieve",playerDto.message());
@@ -123,10 +123,10 @@ class ResultCheckerFacadeTest {
 
         ResultCheckerFacade resultChecker
                 = new ResultCheckerConfiguration().resultCheckerFacade(numberReceiverFacade, winningNumbersGeneratorFacade, repository);
-        resultChecker.checkResult();
+        resultChecker.generateResults();
 
         //when
-        ResultDto result = resultChecker.findByHash(hashIdToFind);
+        ResultDto result = resultChecker.findByTicketId(hashIdToFind);
 
         //then
         assertEquals(hashIdToFind,result.hash());
@@ -161,11 +161,11 @@ class ResultCheckerFacadeTest {
 
         ResultCheckerFacade resultChecker
                 = new ResultCheckerConfiguration().resultCheckerFacade(numberReceiverFacade, winningNumbersGeneratorFacade, repository);
-        resultChecker.checkResult();
+        resultChecker.generateResults();
 
         //when, then
         ResultCheckerNotFoundException exception
-                = assertThrows(ResultCheckerNotFoundException.class, () -> resultChecker.findByHash(hashIdToFind));
+                = assertThrows(ResultCheckerNotFoundException.class, () -> resultChecker.findByTicketId(hashIdToFind));
         assertEquals("Not found ticket with" + hashIdToFind, exception.getMessage());
     }
 }

@@ -7,7 +7,7 @@ import java.util.Set;
 
 @Builder
 public record ResultResponseDto(
-        String hash,
+        String ticketId,
         Set<Integer> numbers,
         Set<Integer> hitNumbers,
         LocalDateTime drawDate,

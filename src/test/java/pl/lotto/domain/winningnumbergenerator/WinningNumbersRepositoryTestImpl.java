@@ -23,6 +23,11 @@ public class WinningNumbersRepositoryTestImpl implements WinningNumbersRepositor
     }
 
     @Override
+    public boolean existsByDrawDate(LocalDateTime drawDate) {
+        return repository.containsKey(drawDate);
+    }
+
+    @Override
     public <S extends WinningNumbers> S save(S entity) {
         repository.put(entity.drawDate(),entity);
         return entity;

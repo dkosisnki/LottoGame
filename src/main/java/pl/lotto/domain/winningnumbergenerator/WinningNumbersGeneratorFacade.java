@@ -48,4 +48,9 @@ public class WinningNumbersGeneratorFacade {
                 .drawDate(winningNumbers.drawDate())
                 .build();
     }
+
+    public boolean areWinningsNumberGeneratedByDate() {
+        LocalDateTime drawDate = numberReceiverFacade.retrieveNextDrawDate();
+        return repository.existsByDrawDate(drawDate);
+    }
 }
