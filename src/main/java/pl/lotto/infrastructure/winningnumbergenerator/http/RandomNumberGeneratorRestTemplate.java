@@ -3,12 +3,10 @@ package pl.lotto.infrastructure.winningnumbergenerator.http;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.util.UriComponentsBuilder;
 import pl.lotto.domain.winningnumbergenerator.RandomNumbersGenerable;
 import pl.lotto.domain.winningnumbergenerator.dto.SixRandomNumbersDto;
@@ -46,15 +44,15 @@ public class RandomNumberGeneratorRestTemplate implements RandomNumbersGenerable
                     .build();
         } catch (ResourceAccessException e){
             log.error("Error while fetching winning numbers using http clients" + e.getMessage());
-            return SixRandomNumbersDto.builder().build();
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     private Set<Integer> getSixRandomDistinctNumbers(ResponseEntity<List<Integer>> response) {
         List<Integer> numbers = response.getBody();
         if (Objects.isNull(numbers)){
-            log.error("Response Body was null returning empty collection");
-            return Collections.emptySet();
+            log.error("Response Body was null.");
+            throw new ResponseStatusException(HttpStatus.NO_CONTENT);
         }
         HashSet<Integer> distinctNumbers = new HashSet<>(numbers);
         return distinctNumbers.stream()
