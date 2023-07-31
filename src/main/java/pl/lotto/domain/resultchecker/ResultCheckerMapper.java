@@ -10,7 +10,7 @@ class ResultCheckerMapper {
     static List<Ticket> mapToTickets(List<TicketDto> ticketDtos) {
         return ticketDtos.stream()
                 .map(ticketDto -> Ticket.builder()
-                        .hash(ticketDto.hash())
+                        .hash(ticketDto.ticketId())
                         .drawDate(ticketDto.drawDate())
                         .numbers(ticketDto.numbers())
                         .build())

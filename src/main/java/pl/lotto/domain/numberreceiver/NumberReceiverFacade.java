@@ -31,13 +31,13 @@ public class NumberReceiverFacade {
         String hash = hashGenerator.getHash();
 
         TicketDto generatedTicket = TicketDto.builder()
-                .hash(hash)
+                .ticketId(hash)
                 .numbers(numbersFromUser)
                 .drawDate(drawDate)
                 .build();
 
         Ticket savedTicket = Ticket.builder()
-                .hash(hash)
+                .ticketId(hash)
                 .numbers(generatedTicket.numbers())
                 .drawDate(generatedTicket.drawDate())
                 .build();
@@ -60,7 +60,7 @@ public class NumberReceiverFacade {
         return ticketRepository.findAllByDrawDate(date)
                 .stream()
                 .map(ticket -> TicketDto.builder()
-                        .hash(ticket.hash())
+                        .ticketId(ticket.ticketId())
                         .numbers(ticket.numbers())
                         .drawDate(ticket.drawDate())
                         .build())

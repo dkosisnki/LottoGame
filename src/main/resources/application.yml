@@ -7,6 +7,13 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+  cache:
+    type: redis
+    redis:
+      time-to-live: PT3600S
+  redis:
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:63792}
 
 lotto:
   number-generator:

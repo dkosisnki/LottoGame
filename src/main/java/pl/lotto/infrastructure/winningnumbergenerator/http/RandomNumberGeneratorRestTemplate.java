@@ -43,7 +43,7 @@ public class RandomNumberGeneratorRestTemplate implements RandomNumbersGenerable
                     .numbers(sixDistinctNumber)
                     .build();
         } catch (ResourceAccessException e){
-            log.error("Error while fetching winning numbers using http clients" + e.getMessage());
+            log.error("Error while fetching winning numbers using http clients, " + e.getMessage());
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

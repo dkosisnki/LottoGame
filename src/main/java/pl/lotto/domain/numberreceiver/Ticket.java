@@ -11,7 +11,7 @@ import java.util.Set;
 @Document
 record Ticket(
         @Id
-        String hash,
+        String ticketId,
         Set<Integer> numbers,
         LocalDateTime drawDate
 ) {

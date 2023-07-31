@@ -7,7 +7,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.FluentQuery;
 
 import java.time.LocalDateTime;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -28,13 +27,13 @@ public class TicketRepositoryTestImpl implements TicketRepository {
     }
 
     @Override
-    public Optional<Ticket> findTicketByHash(String hash) {
+    public Optional<Ticket> findTicketByTicketId(String hash) {
         return Optional.ofNullable(tickets.get(hash));
     }
 
     @Override
     public <S extends Ticket> S save(S entity) {
-        tickets.put(entity.hash(),entity);
+        tickets.put(entity.ticketId(),entity);
         return entity;
     }
 

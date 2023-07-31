@@ -14,7 +14,7 @@ import java.time.Duration;
 public class RandomGeneratorClientConfig {
 
 
-    private RandomNumberGeneratorRestConfigurationProperties properties;
+    private final RandomNumberGeneratorRestConfigurationProperties properties;
     @Bean
     public RestTemplateResponseErrorHandler restTemplateResponseErrorHandler() {
         return new RestTemplateResponseErrorHandler();

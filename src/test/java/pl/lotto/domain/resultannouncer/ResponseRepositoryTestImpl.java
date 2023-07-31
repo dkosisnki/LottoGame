@@ -17,6 +17,10 @@ public class ResponseRepositoryTestImpl implements ResponseRepository{
     private Map<String, ResultResponse> repository = new ConcurrentHashMap<>();
 
     @Override
+    public boolean existsById(String key) {
+       return repository.containsKey(key);
+    }
+    @Override
     public <S extends ResultResponse> S save(S entity) {
         repository.put(entity.ticketId(),entity);
         return entity;
@@ -32,10 +36,7 @@ public class ResponseRepositoryTestImpl implements ResponseRepository{
         return Optional.empty();
     }
 
-    @Override
-    public boolean existsById(String s) {
-        return false;
-    }
+
 
     @Override
     public List<ResultResponse> findAll() {

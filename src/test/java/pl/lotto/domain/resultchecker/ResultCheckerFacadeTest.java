@@ -60,17 +60,17 @@ class ResultCheckerFacadeTest {
         //given
         when(numberReceiverFacade.retrieveAllTicketsByNextDrawDate()).thenReturn(List.of(
                 TicketDto.builder()
-                        .hash("hash1")
+                        .ticketId("hash1")
                         .drawDate(LocalDateTime.of(2023,6,24,12,0,0))
                         .numbers(Set.of(1,2,3,4,5,6))
                         .build(),
                 TicketDto.builder()
-                        .hash("hash2")
+                        .ticketId("hash2")
                         .drawDate(LocalDateTime.of(2023,6,24,12,0,0))
                         .numbers(Set.of(4,5,6,7,8,9))
                         .build(),
                 TicketDto.builder()
-                        .hash("hash3")
+                        .ticketId("hash3")
                         .drawDate(LocalDateTime.of(2023,6,24,12,0,0))
                         .numbers(Set.of(13,22,34,41,55,69))
                         .build()
@@ -99,17 +99,17 @@ class ResultCheckerFacadeTest {
         String hashIdToFind = "hash2";
         when(numberReceiverFacade.retrieveAllTicketsByNextDrawDate()).thenReturn(List.of(
                 TicketDto.builder()
-                        .hash("hash1")
+                        .ticketId("hash1")
                         .drawDate(LocalDateTime.of(2023,6,24,12,0,0))
                         .numbers(Set.of(1,2,3,4,5,6))
                         .build(),
                 TicketDto.builder()
-                        .hash("hash2")
+                        .ticketId("hash2")
                         .drawDate(LocalDateTime.of(2023,6,24,12,0,0))
                         .numbers(Set.of(4,5,6,7,8,9))
                         .build(),
                 TicketDto.builder()
-                        .hash("hash3")
+                        .ticketId("hash3")
                         .drawDate(LocalDateTime.of(2023,6,24,12,0,0))
                         .numbers(Set.of(13,22,34,41,55,69))
                         .build()
@@ -137,17 +137,17 @@ class ResultCheckerFacadeTest {
         String hashIdToFind = "hash5";
         when(numberReceiverFacade.retrieveAllTicketsByNextDrawDate()).thenReturn(List.of(
                 TicketDto.builder()
-                        .hash("hash1")
+                        .ticketId("hash1")
                         .drawDate(LocalDateTime.of(2023,6,24,12,0,0))
                         .numbers(Set.of(1,2,3,4,5,6))
                         .build(),
                 TicketDto.builder()
-                        .hash("hash2")
+                        .ticketId("hash2")
                         .drawDate(LocalDateTime.of(2023,6,24,12,0,0))
                         .numbers(Set.of(4,5,6,7,8,9))
                         .build(),
                 TicketDto.builder()
-                        .hash("hash3")
+                        .ticketId("hash3")
                         .drawDate(LocalDateTime.of(2023,6,24,12,0,0))
                         .numbers(Set.of(13,22,34,41,55,69))
                         .build()
@@ -166,6 +166,6 @@ class ResultCheckerFacadeTest {
         //when, then
         ResultCheckerNotFoundException exception
                 = assertThrows(ResultCheckerNotFoundException.class, () -> resultChecker.findByTicketId(hashIdToFind));
-        assertEquals("Not found ticket with" + hashIdToFind, exception.getMessage());
+        assertEquals("Not found for id: " + hashIdToFind, exception.getMessage());
     }
 }

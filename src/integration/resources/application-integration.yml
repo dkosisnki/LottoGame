@@ -2,3 +2,9 @@ lotto:
   number-generator:
     lotteryRunOccurrence: "*/5 * * * * *"
     lotteryResultCheckerOccurrence: "*/7 * * * * *"
+
+spring:
+  cache:
+    type: none
+    redis:
+      time-to-live: PT10S

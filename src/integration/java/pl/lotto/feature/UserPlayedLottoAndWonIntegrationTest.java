@@ -77,12 +77,12 @@ public class UserPlayedLottoAndWonIntegrationTest extends BaseIntegrationTest {
         MvcResult mvcResult = performPostWithInputNumbers.andExpect(status().isOk()).andReturn();
         String json = mvcResult.getResponse().getContentAsString();
         NumberReceiverResponseDto response = objectMapper.readValue(json, NumberReceiverResponseDto.class);
-        String ticketId = response.ticketDto().hash();
+        String ticketId = response.ticketDto().ticketId();
         //then
         assertAll(
                 () -> assertEquals(response.ticketDto().drawDate(), drawDate),
                 () -> assertEquals(response.message(), "SUCCESS"),
-                () -> assertTrue(Objects.nonNull(response.ticketDto().hash()))
+                () -> assertTrue(Objects.nonNull(response.ticketDto().ticketId()))
         );
         //step 4: user made GET /results/notExistingId and system returned 404(NOT_FOUND) and body with (message: Not found for id: notExistingId and status NOT_FOUND)
         //given & when
@@ -102,7 +102,8 @@ public class UserPlayedLottoAndWonIntegrationTest extends BaseIntegrationTest {
         clock.plusDaysAndMinutes(3, 55);
 
 
-        //step 6: system generated result for TicketId with draw date 19.11.2022 12:00, and saved it with 6 hits
+        //step 6: system generated result for TicketId with draw date 08.07.2023 12:00, and saved it with 6 hits
+        //given & when & then
         await()
                 .atMost(Duration.ofSeconds(10))
                 .pollInterval(Durations.ONE_SECOND)

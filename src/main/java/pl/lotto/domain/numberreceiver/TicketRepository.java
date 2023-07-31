@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface TicketRepository extends MongoRepository<Ticket, String> {
     List<Ticket> findAllByDrawDate(LocalDateTime drawDate);
 
-    Optional<Ticket> findTicketByHash(String hash);
+    Optional<Ticket> findTicketByTicketId(String ticketId);
 
 
 }
