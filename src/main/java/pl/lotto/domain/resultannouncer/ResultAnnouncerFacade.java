@@ -1,6 +1,7 @@
 package pl.lotto.domain.resultannouncer;
 
 import lombok.AllArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import pl.lotto.domain.resultannouncer.dto.ResultAnnouncerResponseDto;
 import pl.lotto.domain.resultannouncer.dto.ResultResponseDto;
 import pl.lotto.domain.resultchecker.ResultCheckerFacade;
@@ -9,8 +10,6 @@ import pl.lotto.domain.resultchecker.dto.ResultDto;
 import java.time.Clock;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.Optional;
-
 import static pl.lotto.domain.resultannouncer.MessageResponse.*;
 
 @AllArgsConstructor
@@ -21,15 +20,9 @@ public class ResultAnnouncerFacade {
     private final ResponseRepository responseRepository;
     private final Clock clock;
 
-    public ResultAnnouncerResponseDto checkWinner(String hash){
-        if (responseRepository.existsById(hash)){
-            Optional<ResultResponse> resultCached = responseRepository.findById(hash);
-            if (resultCached.isPresent()){
-                return new ResultAnnouncerResponseDto(
-                        ResultMapper.mapToResultResponseDto(resultCached.get()),ALREADY_CHECKED_MESSAGE.message);
-            }
-        }
-        ResultDto resultDto = resultCheckerFacade.findByTicketId(hash);
+    @Cacheable("checkWinner")
+    public ResultAnnouncerResponseDto checkWinner(String ticketId){
+        ResultDto resultDto = resultCheckerFacade.findByTicketId(ticketId);
         if (resultDto == null) {
             return new ResultAnnouncerResponseDto(null, HASH_DOES_NOT_EXIST_MESSAGE.message);
         }
@@ -37,10 +30,10 @@ public class ResultAnnouncerFacade {
         ResultResponseDto resultResponseDto = buildResponseDto(resultDto);
         responseRepository.save(ResultMapper.mapToResultResponse(resultResponseDto));
 
-        if (responseRepository.existsById(hash) && !isAfterResultAnnouncementTime(resultDto)){
+        if (responseRepository.existsById(ticketId) && !isAfterResultAnnouncementTime(resultDto)){
             return new ResultAnnouncerResponseDto(resultResponseDto, WAIT_MESSAGE.message);
         }
-        if (resultCheckerFacade.findByTicketId(hash).isWinner()) {
+        if (resultCheckerFacade.findByTicketId(ticketId).isWinner()) {
             return new ResultAnnouncerResponseDto(resultResponseDto, WIN_MESSAGE.message);
         }
         return new ResultAnnouncerResponseDto(resultResponseDto, LOSE_MESSAGE.message);

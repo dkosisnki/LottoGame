@@ -79,11 +79,11 @@ public class NumberReceiverFacadeTest {
         NumberReceiverFacade numberReceiverFacade = new NumberReceiverConfiguration().numberReceiverFacade(clock, ticketRepository);
 
         // when
-        String testedHash = numberReceiverFacade.inputNumbers(usersNumbers).ticketDto().hash();
+        String testedId = numberReceiverFacade.inputNumbers(usersNumbers).ticketDto().ticketId();
 
         // then
-        assertEquals(36,testedHash.length());
-        assertNotNull(testedHash);
+        assertEquals(36,testedId.length());
+        assertNotNull(testedId);
     }
     @Test
     public void shouldReturnCorrectDrawDate() {

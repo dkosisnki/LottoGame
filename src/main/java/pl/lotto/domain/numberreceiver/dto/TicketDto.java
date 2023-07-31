@@ -7,7 +7,7 @@ import java.util.Set;
 
 @Builder
 public record TicketDto(
-        String hash,
+        String ticketId,
         Set<Integer> numbers,
         LocalDateTime drawDate
 ) {
