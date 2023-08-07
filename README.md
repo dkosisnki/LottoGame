@@ -5,7 +5,7 @@
 <br/>    
 <br/>   
 <p>
-  <b>Try your luck here:&nbsp</b><a href="https://lotto-game-app.herokuapp.com">https://lotto-game-app.herokuapp.com</a>
+  <b>Try your luck here:&nbsp</b><a href="http://ec2-3-68-196-188.eu-central-1.compute.amazonaws.com/">http://ec2-3-68-196-188.eu-central-1.compute.amazonaws.com/</a>
 </p> 
 <h6>(Please note, that lottery results are generated each Saturday at 12:00.)</h6>
 </br> 
